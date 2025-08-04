@@ -14,9 +14,14 @@ const router = createRouter({
   routes: setupLayouts([
     ...routes,
     {
-      path: '/chicken-sim',
-      name: 'ChickenSim',
-      component: () => import('@/pages/chicken-sim.vue')
+      path: '/',
+      name: 'Home',
+      component: () => import('@/pages/index.vue')
+    },
+    // Add catch-all route for 404
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
   ]),
 })

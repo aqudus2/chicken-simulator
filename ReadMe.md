@@ -2,79 +2,105 @@
 
 A full-stack application for managing chicken coops and tracking egg production.
 
-## Features
-- Real-time monitoring of chicken coops
-- Egg production tracking and analytics
-- Health status monitoring
-- Production statistics and reporting
-- Interactive dashboard
+## Setup and Run Instructions
 
-## Tech Stack
-### Backend
-- FastAPI
-- PostgreSQL
-- SQLAlchemy
-- Pydantic
+### Backend Setup
+1. Navigate to backend directory:
+```bash
+cd Gm/backend
+```
 
-### Frontend
-- Vue 3
-- Vuetify 3
-- Pinia
-- TypeScript
-- Vite
+2. Create and activate virtual environment:
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
 
-## Setup
-
-### Backend
-1. Install dependencies:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Configure environment:
-```env
-DB_USERNAME=your_username
-DB_PASSWORD=your_password
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=chicken_db
-```
-
-3. Run server:
+4. Run the FastAPI server:
 ```bash
 uvicorn main:app --reload
 ```
 
-### Frontend
-1. Install and run:
+### Frontend Setup
+1. Navigate to frontend directory:
+```bash
+cd Gm/frontend/chicken-simulator
+```
+
+2. Install dependencies:
 ```bash
 npm install
+```
+
+3. Run development server:
+```bash
 npm run dev
 ```
 
-## API Endpoints
+## System Components
 
-### Chickens
-- `GET /chickens/` - List all chickens
-- `POST /chickens/populate` - Populate sample data
-- `GET /chickens/{chicken_id}` - Get chicken details
+### Backend Components
+- **FastAPI Server**: Handles HTTP requests and business logic
+- **PostgreSQL Database**: Stores chicken and production data
+- **SQLAlchemy ORM**: Manages database operations
+- **Pydantic Models**: Handles data validation
 
-### Egg Production
-- `GET /egg-production/` - List all production records
-- `POST /egg-production/seed` - Seed production data
-- `GET /chickens/{chicken_id}/egg-production` - Get production history
+### Frontend Components
+- **Vue 3**: Frontend framework with Composition API
+- **Vuetify**: UI component library
+- **Pinia**: State management for chicken data
+- **Vue Router**: Navigation between views
+
+## System Logic Flow
+1. User accesses dashboard (chicken-sim.vue)
+2. System displays:
+   - Coop statistics
+   - Egg production metrics
+   - Health status indicators
+3. User can:
+   - View detailed chicken information
+   - Track egg production
+   - Monitor health status
+   - Generate reports
+
+## Screenshots
+
+### Dashboard View
+![Dashboard](screenshots/dashboard.png)
+- Real-time coop monitoring
+- Production statistics
+- Health status indicators
+
+### Coop Details
+![Coop Details](screenshots/coop-details.png)
+- Individual chicken tracking
+- Production history
+- Health monitoring
+
+## Live Demo
+[Chicken Simulator Demo](https://your-demo-link.com)
 
 ## Project Structure
 ```
 Gm/
 ├── backend/
-│   ├── main.py           # FastAPI application
+│   ├── main.py           # FastAPI endpoints
 │   ├── models.py         # Database models
-│   └── schemas.py        # Data schemas
+│   └── schemas.py        # Data validation
 └── frontend/
     └── chicken-simulator/
         ├── src/
         │   ├── pages/    # Vue components
-        │   └── stores/   # Pinia stores
+        │   └── stores/   # State management
         └── package.json
-```"# chicken-simulator" 
+```
+
+## Development Stack
+- Backend: FastAPI, PostgreSQL, SQLAlchemy
+- Frontend: Vue 3, Vuetify 3, TypeScript
+- Tools: Vite, npm, Python 3.8+

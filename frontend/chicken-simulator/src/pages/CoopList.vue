@@ -15,7 +15,7 @@
     <!-- Back Button -->
     <v-row class="mt-4">
       <v-col cols="12">
-        <v-btn color="grey" @click="navigateToChickenSim">
+        <v-btn color="grey" @click="goBack">
           <v-icon left>mdi-arrow-left</v-icon>
           Back to Dashboard
         </v-btn>
@@ -248,8 +248,8 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const navigateToChickenSim = () => {
-  router.push('/chicken-sim')
+const goBack = () => {
+  router.push('/')  // Navigate back to root/dashboard
 }
 
 const chickens = ref([])

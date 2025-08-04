@@ -93,6 +93,9 @@ export const useChickenStore = defineStore('chicken', {
     deleteChickenError: '',
     eggProductionError: '',
     analyticsError: '',
+
+    // Initialization state
+    isInitialized: false, // Add this new state property
   }),
 
   getters: {
@@ -117,6 +120,9 @@ export const useChickenStore = defineStore('chicken', {
       })
       return coops
     },
+    isDataEmpty: (state): boolean => {
+      return state.chickens.length === 0 && state.eggProductions.length === 0
+    }
   },
 
   actions: {
@@ -127,6 +133,12 @@ export const useChickenStore = defineStore('chicken', {
       try {
         const response = await axios.post('http://localhost:8000/chickens/populate')
         this.chickens = response.data
+        
+        // After populating chickens, seed egg production data
+        await this.seedEggProductionData()
+        
+        // Refresh all data
+        await this.initializeData()
         return response.data
       } catch (error: any) {
         this.error = error.response?.data?.detail || 'Failed to populate chickens'
@@ -330,10 +342,37 @@ export const useChickenStore = defineStore('chicken', {
     },
 
     async initializeData() {
-      await Promise.all([
-        this.fetchChickens(),
-        this.fetchEggProductions(),        
-      ])
+      if (this.isInitialized) {
+        return
+      }
+
+      this.loading = true
+      this.error = ''
+
+      try {
+        await Promise.all([
+          this.fetchChickens(),
+          this.fetchEggProductions(),
+        ])
+        this.isInitialized = true
+      } catch (error: any) {
+        this.error = 'Failed to initialize data'
+        console.error('Error initializing data:', error)
+      } finally {
+        this.loading = false
+      }
     },
+
+    // Add a new reset action
+    resetStore() {
+      this.chickens = []
+      this.chickenLoaded = null
+      this.chickenDetails = null
+      this.eggProductions = []
+      this.chickenEggProductions = []
+      this.coopSummary = null
+      this.isInitialized = false
+      this.clearErrors()
+    }
   },
 })
