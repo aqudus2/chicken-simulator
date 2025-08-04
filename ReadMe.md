@@ -1,4 +1,4 @@
-# Chicken Farm Management System
+# Chicken Simulator
 
 A full-stack application for managing chicken coops and tracking egg production.
 
