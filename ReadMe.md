@@ -77,4 +77,4 @@ Gm/
         │   ├── pages/    # Vue components
         │   └── stores/   # Pinia stores
         └── package.json
-```
+```"# chicken-simulator" 
