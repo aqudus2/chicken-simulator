@@ -1,8 +1,32 @@
-# Chicken Simulator
+# Chicken Farm Management System
 
 A full-stack application for managing chicken coops and tracking egg production.
 
-## Setup and Run Instructions
+## Environment Setup
+
+### Database Configuration
+
+1. Create a PostgreSQL database named `chicken_db`
+2. Create `.env`:
+
+3. Update the `.env` file with your database credentials:
+```properties
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=chicken_db
+```
+
+4. Install PostgreSQL if not already installed:
+   - Download from [PostgreSQL Official Website](https://www.postgresql.org/download/windows/)
+   - Run the installer and note your superuser password
+   - Add PostgreSQL bin directory to PATH: `C:\Program Files\PostgreSQL\{version}\bin`
+
+5. Create the database:
+```bash
+psql -U postgres -c "CREATE DATABASE chicken_db"
+```
 
 ### Backend Setup
 1. Navigate to backend directory:
@@ -12,7 +36,7 @@ cd Gm/backend
 
 2. Create and activate virtual environment:
 ```bash
-python -m venv venv
+py -m venv venv
 venv\Scripts\activate
 ```
 
@@ -57,7 +81,7 @@ npm run dev
 - **Vue Router**: Navigation between views
 
 ## System Logic Flow
-1. User accesses dashboard (chicken-sim.vue)
+1. User accesses dashboard (index.vue)
 2. System displays:
    - Coop statistics
    - Egg production metrics
@@ -81,9 +105,6 @@ npm run dev
 - Individual chicken tracking
 - Production history
 - Health monitoring
-
-## Live Demo
-[Chicken Simulator Demo](https://your-demo-link.com)
 
 ## Project Structure
 ```
